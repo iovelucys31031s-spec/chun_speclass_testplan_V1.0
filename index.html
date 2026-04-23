@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>考後自我反省與成長規劃</title>
+    <!-- 載入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            /* SEVENTEEN 官方應援色: 寧靜藍 (#92A8D1) 到 玫瑰石英粉 (#F7CAC9) */
+            background: linear-gradient(to bottom, #92A8D1, #F7CAC9);
+            min-height: 100vh;
+            background-attachment: fixed; /* 確保漸層不會隨捲動中斷 */
+        }
+        .subject-input {
+            appearance: textfield;
+        }
+        .subject-input::-webkit-outer-spin-button,
+        .subject-input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .reflection-card {
+            border-left: 5px solid;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm shadow-xl rounded-2xl p-6 md:p-10">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-indigo-700">考後自我反省與成長規劃</h1>
+            <p class="mt-2 text-gray-600">一次考試，是一次學習的機會。讓我們誠實地檢視過程與結果。</p>
+        </header>
+
+        <!-- 一、 成績輸入區 -->
+        <section id="score-input" class="mb-8 border-b pb-6 border-indigo-200">
+            <h2 class="text-2xl font-semibold text-indigo-600 mb-4">一、 輸入成績與預期目標 (滿分 100)</h2>
+            
+            <div class="mb-4">
+                <label for="student-name" class="block text-lg font-medium text-gray-700 mb-2">學生姓名</label>
+                <input type="text" id="student-name" placeholder="請輸入您的姓名"
+                       class="w-full rounded-lg border-gray-300 shadow-sm p-3 border focus:border-indigo-500 focus:ring-indigo-500">
+            </div>
+
+            <div class="mb-6">
+                <label for="exam-period" class="block text-lg font-medium text-gray-700 mb-2">考試類型</label>
+                <select id="exam-period"
+                        class="w-full rounded-lg border-gray-300 shadow-sm p-3 border focus:border-indigo-500 focus:ring-indigo-500 bg-white">
+                    <option value="" disabled selected>請選擇考試時間/類別</option>
+                    <option value="上學期期中考">上學期期中考</option>
+                    <option value="上學期期末考">上學期期末考</option>
+                    <option value="下學期期中考">下學期期中考</option>
+                    <option value="下學期期末考">下學期期末考</option>
+                    <option value="其他">其他</option>
+                </select>
+            </div>
+
+            <div class="grid grid-cols-3 gap-x-4 gap-y-4 text-center items-center">
+                <div class="font-bold text-base text-gray-800 self-end p-2">科目</div>
+                <div class="font-bold text-base text-indigo-700 self-end p-2 border-b border-indigo-300">實際成績</div>
+                <div class="font-bold text-base text-teal-700 self-end p-2 border-b border-teal-300">預計目標</div>
+
+                <label class="text-left font-medium text-gray-700 p-2">國語</label>
+                <input type="number" id="chinese" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+                <input type="number" id="chinese-expected" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+
+                <label class="text-left font-medium text-gray-700 p-2">數學</label>
+                <input type="number" id="math" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+                <input type="number" id="math-expected" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+
+                <label class="text-left font-medium text-gray-700 p-2">自然</label>
+                <input type="number" id="science" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+                <input type="number" id="science-expected" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+
+                <label class="text-left font-medium text-gray-700 p-2">社會</label>
+                <input type="number" id="social" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+                <input type="number" id="social-expected" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+
+                <label class="text-left font-medium text-gray-700 p-2">英文</label>
+                <input type="number" id="english" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+                <input type="number" id="english-expected" min="0" max="100" value="0" class="subject-input w-full rounded-lg border-gray-300 p-3 border">
+            </div>
+        </section>
+
+        <!-- 二、三、四 檢核表 -->
+        <form id="reflection-form">
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">二、 考前準備檢核</h2>
+                <div id="prep-list" class="space-y-3 p-4 bg-indigo-50 rounded-xl"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">三、 考試當中的表現</h2>
+                <div id="during-list" class="space-y-3 p-4 bg-yellow-50 rounded-xl"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-indigo-600 mb-4">四、 考後成長規劃與行動</h2>
+                <div id="after-list" class="space-y-3 p-4 bg-green-50 rounded-xl"></div>
+            </section>
+
+            <!-- 控制按鈕區 -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+                <button type="button" onclick="generateReflection()" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-full shadow-lg hover:bg-indigo-700 transition">🚀 生成反省建議</button>
+                <button type="button" onclick="saveToLocal()" class="px-6 py-3 bg-green-600 text-white font-semibold rounded-full shadow-lg hover:bg-green-700 transition">💾 儲存紀錄至本機</button>
+                <button type="button" onclick="toggleHistory()" class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition">📜 查看/搜尋紀錄</button>
+                
+                <button type="button" onclick="exportJSON()" class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-full shadow-lg hover:bg-purple-700 transition">📤 匯出設定檔 (JSON)</button>
+                <button type="button" onclick="triggerImport()" class="px-6 py-3 bg-pink-600 text-white font-semibold rounded-full shadow-lg hover:bg-pink-700 transition">📥 匯入設定檔 (JSON)</button>
+                <button type="button" onclick="exportAllText()" class="px-6 py-3 bg-gray-700 text-white font-semibold rounded-full shadow-lg hover:bg-gray-800 transition">🗃️ 匯出全紀錄 (.txt)</button>
+                
+                <input type="file" id="import-file" class="hidden" accept=".json" onchange="importJSON(event)">
+            </div>
+            <div id="status-msg" class="text-center mt-4 text-sm font-medium text-gray-500">準備就緒</div>
+        </form>
+
+        <!-- 總結報告顯示區 -->
+        <section id="summary-section" class="mt-12 pt-8 border-t border-indigo-300 hidden">
+            <h2 class="text-3xl font-bold text-indigo-700 text-center mb-6">📝 我的反省報告</h2>
+            <div id="summary-content" class="space-y-6 text-gray-700 p-6 bg-gray-50 rounded-xl"></div>
+            <div class="text-center mt-4">
+                <button type="button" onclick="downloadSingleText()" class="px-6 py-2 bg-red-500 text-white rounded-full hover:bg-red-600">📥 下載此筆報告 (.txt)</button>
+            </div>
+        </section>
+        
+        <!-- 歷史紀錄與搜尋區 -->
+        <section id="history-section" class="mt-12 pt-8 border-t border-gray-300 hidden">
+            <h2 class="text-3xl font-bold text-blue-700 text-center mb-6">📜 歷史反省記錄</h2>
+            <div class="flex items-center gap-2 mb-6 max-w-md mx-auto">
+                <input type="text" id="search-name-input" placeholder="請輸入姓名，例：崔小哲" class="flex-grow rounded-lg border-gray-300 p-3 border focus:ring-2 focus:ring-indigo-500 outline-none">
+                <button onclick="renderHistory()" class="px-4 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">搜尋</button>
+                <button onclick="clearSearch()" class="px-4 py-3 bg-gray-400 text-white rounded-lg hover:bg-gray-500 transition">清除</button>
+            </div>
+            <div id="history-content" class="space-y-4"></div>
+        </section>
+    </div>
+
+    <script>
+        // --- 核心資料 ---
+        const LOCAL_STORAGE_KEY = 'exam_reflection_standalone_v1';
+        const subjects = [
+            { id: 'chinese', name: '國語' }, { id: 'math', name: '數學' },
+            { id: 'science', name: '自然' }, { id: 'social', name: '社會' }, { id: 'english', name: '英文' }
+        ];
+
+        const prepItems = [
+            "考試前，我製作了詳細的讀書計畫並確實執行。", "我平時有按時完成所有作業。", "平常有錯的地方我都有確實訂正。",
+            "充分理解了所有概念，而不是死記硬背。", "我有做複習卷或評量卷。", "考前我預留了充足的休息和睡眠時間。",
+            "將重點知識點濃縮成自己的筆記或心智圖。", "我有特別複習了老師提示的重點。", "考前一天將文具物品準備妥當。",
+            "針對過去的錯題與訂正筆記進行考前總複習。", "我每天的讀書時間都達到計畫中的時數。",
+            "我排除所有會影響讀書效率的分心事物。", "我將複雜的知識點拆解成小塊進行學習。"
+        ];
+
+        const duringItems = [
+            "我仔細閱讀了所有題目和說明。", "我有合理分配時間，沒有花太多時間在一道題上。", "我遇到難題時，能保持冷靜並先跳過。",
+            "我檢查了答案，確認沒有計算或寫作錯誤。", "我沒有因為過度緊張而忘記平常會的東西。", "遇到不會的題目，會用刪去法嘗試推論答案。",
+            "我在計算或填空時，避免了單位或標點符號的錯誤。", "我在試卷上做了記號，標註不確定的題目待會檢查。",
+            "我的專注力能持續到考試結束，沒有中途走神。", "我數學或計算題有寫下完整的步驟。",
+            "我充分利用了試卷上的空白處進行計算。", "我考試期間未受其他同學或環境的影響。"
+        ];
+
+        const afterItems = [
+            "我會為這次的努力給予自己鼓勵。", "我會將錯題整理成筆記或貼上便利貼。", "我會將我錯題的原因進行詳細分類。",
+            "我會針對「概念不理解」的錯題，重新問老師或查資料。", "我會定期回顧錯題本，而不是只練習一次。",
+            "我會針對弱點科目，額外尋找相關的練習資源。", "我規劃了每天固定的複習時間，防止遺忘。",
+            "我會為下一次考試設定了新的分數目標。", "我會一併執行「考前準備」的事項。"
+        ];
+
+        // 初始化檢核表 UI
+        function initUI() {
+            const createCheckbox = (list, containerId, name) => {
+                const container = document.getElementById(containerId);
+                list.forEach((item, index) => {
+                    const div = document.createElement('div');
+                    div.className = "flex items-start";
+                    div.innerHTML = `
+                        <input id="${name}-${index}" type="checkbox" name="${name}" value="${item}" class="h-5 w-5 text-indigo-600 rounded border-gray-300 mt-1">
+                        <label for="${name}-${index}" class="ml-3 text-gray-700">${index+1}. ${item}</label>
+                    `;
+                    container.appendChild(div);
+                });
+            };
+            createCheckbox(prepItems, 'prep-list', 'preparation');
+            createCheckbox(duringItems, 'during-list', 'during');
+            createCheckbox(afterItems, 'after-list', 'after');
+        }
+
+        // --- 資料處理功能 ---
+        function getHistory() {
+            const data = localStorage.getItem(LOCAL_STORAGE_KEY);
+            return data ? JSON.parse(data) : [];
+        }
+
+        function saveHistory(history) {
+            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(history));
+        }
+
+        function collectData() {
+            const name = document.getElementById('student-name').value.trim() || '未輸入';
+            const period = document.getElementById('exam-period').value || '未選擇';
+            
+            let totalActual = 0, totalExp = 0;
+            const scoreObj = {};
+            const lowScores = [], unmet = [];
+
+            subjects.forEach(s => {
+                const act = parseInt(document.getElementById(s.id).value) || 0;
+                const exp = parseInt(document.getElementById(s.id + '-expected').value) || 0;
+                totalActual += act; totalExp += exp;
+                scoreObj[s.id] = { actual: act, expected: exp };
+                if (act < 60) lowScores.push(s.name);
+                if (act < exp) unmet.push(s.name);
+            });
+
+            const getChecked = (name) => Array.from(document.querySelectorAll(`input[name="${name}"]:checked`)).map(i => i.value);
+
+            return {
+                id: Date.now().toString(),
+                timestamp: new Date().toISOString(),
+                studentName: name,
+                examPeriod: period,
+                scores: scoreObj,
+                totalActual, totalExp,
+                averageActual: (totalActual / subjects.length).toFixed(1),
+                lowScores: lowScores.join('、'),
+                unmetExpectations: unmet.join('、'),
+                prepCheckedList: getChecked('preparation'),
+                duringCheckedList: getChecked('during'),
+                afterCheckedList: getChecked('after'),
+                prepSummary: `${getChecked('preparation').length}/${prepItems.length}`,
+                duringSummary: `${getChecked('during').length}/${duringItems.length}`,
+                afterSummary: `${getChecked('after').length}/${afterItems.length}`
+            };
+        }
+
+        // --- 按鈕功能 ---
+        function generateReflection() {
+            const data = collectData();
+            let html = `
+                <div class="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500">
+                    <h3 class="font-bold text-lg">🎓 基本資訊</h3>
+                    <p>姓名：${data.studentName} | 考試：${data.examPeriod}</p>
+                    <p>平均分數：${data.averageActual} (目標平均：${(data.totalExp / 5).toFixed(1)})</p>
+                    ${data.lowScores ? `<p class="text-red-600 font-bold">待加強科目：${data.lowScores}</p>` : ''}
+                    ${data.unmetExpectations ? `<p class="text-orange-600 font-bold">未達標科目：${data.unmetExpectations}</p>` : ''}
+                </div>
+                <div>
+                    <h4 class="font-bold text-indigo-700">💡 考前反思</h4>
+                    <p>已達成項目數：${data.prepSummary}</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-yellow-700">⏱️ 考試表現</h4>
+                    <p>已達成項目數：${data.duringSummary}</p>
+                </div>
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <h4 class="font-bold text-yellow-800">🌟 成長規劃建議：</h4>
+                    <p>${data.lowScores || data.unmetExpectations ? '建議優先針對未達標或低分科目的錯題進行詳細分類，並重新審視考前準備的落實程度。' : '表現優異，且皆達到預期目標，請繼續保持目前的學習節奏，並可以挑戰更高難度的進階內容！'}</p>
+                </div>
+            `;
+            document.getElementById('summary-content').innerHTML = html;
+            document.getElementById('summary-section').classList.remove('hidden');
+            document.getElementById('summary-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function saveToLocal() {
+            const data = collectData();
+            if (data.studentName === '未輸入') return showStatus('請輸入學生姓名！', 'red');
+            
+            const history = getHistory();
+            history.unshift(data);
+            saveHistory(history);
+            showStatus('已成功儲存紀錄！', 'green');
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const queryVal = document.getElementById('search-name-input').value.trim();
+            let history = getHistory();
+            
+            if (queryVal) {
+                history = history.filter(r => r.studentName.includes(queryVal));
+            }
+
+            const container = document.getElementById('history-content');
+            if (history.length === 0) {
+                container.innerHTML = '<p class="text-center text-gray-400">目前尚無符合搜尋條件的紀錄</p>';
+                return;
+            }
+
+            container.innerHTML = history.map(r => `
+                <div class="reflection-card border-indigo-300">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="font-bold text-lg text-indigo-700">${r.studentName}</span>
+                            <span class="text-gray-500 ml-2 text-sm">${r.examPeriod}</span>
+                        </div>
+                        <span class="text-xs text-gray-400">${new Date(r.timestamp).toLocaleString()}</span>
+                    </div>
+                    <div class="mt-2 text-sm text-gray-700">
+                        <p><b>平均分數：</b>${r.averageActual} 分 | <b>待加強：</b>${r.lowScores || '無'}</p>
+                        <p><b>檢核統計：</b>考前(${r.prepSummary}) | 考試(${r.duringSummary}) | 考後(${r.afterSummary})</p>
+                    </div>
+                    <details class="mt-2">
+                        <summary class="text-xs text-indigo-600 cursor-pointer hover:underline">查看詳細清單</summary>
+                        <div class="mt-2 text-xs text-gray-600 p-2 bg-gray-50 rounded">
+                            <p><b>考前已執行：</b> ${r.prepCheckedList.length > 0 ? r.prepCheckedList.join('、') : '無'}</p>
+                            <p class="mt-1"><b>考後將行動：</b> ${r.afterCheckedList.length > 0 ? r.afterCheckedList.join('、') : '無'}</p>
+                        </div>
+                    </details>
+                    <div class="mt-3 flex gap-2">
+                        <button onclick="deleteItem('${r.id}')" class="text-xs bg-red-50 text-red-600 px-3 py-1 rounded-full hover:bg-red-100 transition">刪除紀錄</button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function deleteItem(id) {
+            if (!confirm('確定要永久刪除這筆反省紀錄嗎？')) return;
+            const history = getHistory().filter(r => r.id !== id);
+            saveHistory(history);
+            renderHistory();
+            showStatus('已刪除紀錄', 'gray');
+        }
+
+        function clearSearch() {
+            document.getElementById('search-name-input').value = '';
+            renderHistory();
+        }
+
+        function toggleHistory() {
+            const sec = document.getElementById('history-section');
+            sec.classList.toggle('hidden');
+            if (!sec.classList.contains('hidden')) renderHistory();
+        }
+
+        // --- JSON 匯出/匯入 ---
+        function exportJSON() {
+            const history = getHistory();
+            if (history.length === 0) return alert('目前沒有任何紀錄可以匯出。');
+            
+            const blob = new Blob([JSON.stringify(history, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `反省紀錄備份_${new Date().toLocaleDateString()}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+            showStatus('設定檔 (JSON) 匯出成功', 'purple');
+        }
+
+        function triggerImport() {
+            document.getElementById('import-file').click();
+        }
+
+        function importJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const imported = JSON.parse(e.target.result);
+                    if (!Array.isArray(imported)) throw new Error('格式錯誤');
+                    
+                    if (confirm(`即將匯入 ${imported.length} 筆紀錄。系統會與現有紀錄合併並自動去除重複項目，是否繼續？`)) {
+                        const current = getHistory();
+                        const combined = [...imported, ...current];
+                        // 根據 ID 去重
+                        const unique = Array.from(new Map(combined.map(item => [item.id, item])).values());
+                        
+                        saveHistory(unique);
+                        showStatus('資料合併匯入完成！', 'green');
+                        renderHistory();
+                    }
+                } catch (err) {
+                    alert('匯入失敗：請確保檔案是正確的 JSON 格式。');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        // --- 文字檔匯出 ---
+        function downloadSingleText() {
+            const content = document.getElementById('summary-content').innerText;
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            const name = document.getElementById('student-name').value.trim() || '學生';
+            a.href = URL.createObjectURL(blob);
+            a.download = `${name}_考後反省報告.txt`;
+            a.click();
+        }
+
+        function exportAllText() {
+            const history = getHistory();
+            if (history.length === 0) return alert('無紀錄可供匯出');
+            
+            let text = "=== 考後反省與成長規劃 - 全紀錄匯出 ===\n\n";
+            history.forEach(r => {
+                text += `時間：${new Date(r.timestamp).toLocaleString()}\n`;
+                text += `姓名：${r.studentName} | 考試：${r.examPeriod}\n`;
+                text += `平均：${r.averageActual}分 | 待加強：${r.lowScores || '無'}\n`;
+                text += `考前準備項目數：${r.prepSummary}\n`;
+                text += `考試表現項目數：${r.duringSummary}\n`;
+                text += `考後行動項目數：${r.afterSummary}\n`;
+                text += `已執行行動：${r.prepCheckedList.join('、')}\n`;
+                text += `--------------------------------------------------\n\n`;
+            });
+            
+            const blob = new Blob([text], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `考後反省全紀錄清單.txt`;
+            a.click();
+        }
+
+        function showStatus(msg, color) {
+            const el = document.getElementById('status-msg');
+            el.innerText = msg;
+            el.className = `text-center mt-4 text-sm font-medium text-${color}-600`;
+            setTimeout(() => {
+                el.innerText = '準備就緒';
+                el.className = 'text-center mt-4 text-sm font-medium text-gray-500';
+            }, 3000);
+        }
+
+        window.onload = () => {
+            initUI();
+            renderHistory();
+        };
+    </script>
+</body>
+</html>
